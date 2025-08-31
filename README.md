@@ -3,6 +3,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+MOHON MAAF AI TIDAK DAPAT DIGUNAKAN KARNA SAYA TIDAK MEMILIKI KATRU VISA ATAU YANG BISA DIGUNAKAN UNTUK MENDAPATKAN TOKEN AI GRANITE
+
 First, run the development server:
 
 ```bash
