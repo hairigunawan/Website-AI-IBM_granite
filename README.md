@@ -5,6 +5,46 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 MOHON MAAF AI TIDAK DAPAT DIGUNAKAN KARNA SAYA TIDAK MEMILIKI KATRU VISA ATAU YANG BISA DIGUNAKAN UNTUK MENDAPATKAN TOKEN AI GRANITE
 
+Website AI Code Generator
+Selamat datang di repositori Website AI Code Generator. Proyek ini adalah platform web modern yang memungkinkan pengguna untuk menghasilkan kode menggunakan kekuatan model AI dari IBM Granite. Aplikasi ini dibangun dengan Next.js dan dilengkapi dengan sistem otentikasi lengkap, tingkatan harga, dan halaman pembayaran.
+
+✨ Fitur Utama
+Generator Kode AI: Fitur inti untuk menghasilkan snippet kode berdasarkan input pengguna menggunakan model AI IBM Granite.
+
+Sistem Otentikasi Lengkap:
+
+Pendaftaran dan Login menggunakan email & password.
+
+Login dengan penyedia OAuth (Google & GitHub) melalui NextAuth.js.
+
+Sesi pengguna yang aman dengan fungsionalitas Logout.
+
+Halaman Harga (Pricing): Tiga pilihan paket (Gratis, Pro, & Enterprise) dengan opsi tagihan bulanan atau tahunan.
+
+Alur Pembayaran: Halaman checkout yang aman untuk pengguna yang ingin berlangganan paket berbayar.
+
+Rute Terproteksi: Pengguna yang belum login akan diarahkan ke halaman login saat mencoba mengakses fitur premium atau halaman pembayaran.
+
+Pilihan Model AI: Pengguna dapat memilih antara model AI versi gratis atau Pro (terproteksi).
+
+Desain Responsif: Antarmuka yang modern dan dapat diakses di berbagai perangkat, dibangun dengan Tailwind CSS.
+
+🚀 Teknologi yang Digunakan
+Framework: Next.js (App Router)
+
+Bahasa: TypeScript
+
+Styling: Tailwind CSS
+
+Otentikasi: NextAuth.js
+
+Ikon: Lucide React
+
+Animasi: Framer Motion
+
+Deployment: Vercel
+
+
 First, run the development server:
 
 ```bash
