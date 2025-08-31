@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import '../app/globals.css';
+import '../../app/globals.css';
 import Hero from './Hero';
 import CodeDemo from './CodeDemo';
 import Steps from './Steps';

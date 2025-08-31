@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeInUp } from "utils/lib/animations"; 
+import { fadeInUp } from "utils/lib/animations";
 
 interface Post {
   id: number;
