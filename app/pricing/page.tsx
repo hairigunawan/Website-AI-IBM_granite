@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";  
 import PricingPage from "../../components/PricingComponents/Pricing";
-import BackgroundShape from "components/BgShape/background-shape";
+import BackgroundShape from "../../components/BgShape/background-shape";
 
 
 export default function Pricing() {

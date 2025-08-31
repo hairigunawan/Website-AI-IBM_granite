@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import DemoPage from "components/how-it-worksComponents/HowItWorks";
-import BackgroundShape from "components/BgShape/background-shape";
+import DemoPage from "../../components/how-it-worksComponents/HowItWorks";
+import BackgroundShape from "../../components/BgShape/background-shape";
 
 export default function HowItWorksPage() {
   return (

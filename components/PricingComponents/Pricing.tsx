@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Check, ChevronDown } from 'lucide-react'; 
-import 'app/globals.css';
+import '../../app/globals.css';
 
 const PricingPage = () => {
   const { status } = useSession();
