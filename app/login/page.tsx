@@ -1,100 +1,108 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [isRegister, setIsRegister] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [isChecking, setIsChecking] = useState(true);
-  const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false);
 
-  // form state
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setLoading(true);
 
-    // 🔹 Validasi sederhana
-    if (!username || !password) {
-      setError("Username dan password wajib diisi.");
-      return;
-    }
+    if (isRegister) {
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, name }),
+        });
 
-    // 🔹 Di sini bisa ganti dengan request ke API login
-    // Misal call ke server, lalu cek credential
-    if (username === "admin" && password === "1234") {
-      localStorage.setItem("isProUser", "true");
-      router.push("/");
-    } else {
-      setError("Username atau password salah.");
+        if (res.ok) {
+          // Jika pendaftaran berhasil, langsung coba login
+          const signInResponse = await signIn('credentials', {
+            email,
+            password,
+            redirect: false,
+          });
+          if (signInResponse?.ok) {
+            router.push('/');
+          } else {
+             setError("Gagal login setelah mendaftar. Silakan coba login manual.");
+          }
+        } else {
+          const data = await res.json();
+          setError(data.message || 'Pendaftaran gagal.');
+        }
+      } catch (err) {
+        setError('Terjadi kesalahan. Coba lagi.');
+      }
+    } 
+    // JIKA INGIN LOGIN
+    else {
+      try {
+        const result = await signIn('credentials', {
+          redirect: false,
+          email,
+          password,
+        });
+
+        if (result?.error) {
+          setError('Email atau password salah!');
+        } else if (result?.ok) {
+          router.push('/');
+        }
+      } catch (err) {
+        setError('Terjadi kesalahan. Coba lagi.');
+      }
     }
+    setLoading(false);
   };
 
-  useEffect(() => {
-    const isPro = localStorage.getItem("isProUser");
-    if (isPro === "true") {
-      setAlreadyLoggedIn(true);
-      router.push("/");
-    }
-    setIsChecking(false);
-  }, [router]);
-
-  if (isChecking) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 text-gray-900">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (alreadyLoggedIn) {
-    return null;
-  }
-
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100 text-gray-900">
-      <div className="bg-white shadow-lg rounded-xl p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4 text-center">Login ke IBM Granite Pro</h1>
-        <p className="text-gray-600 mb-6 text-center">
-          Masukkan akun Anda untuk mengakses model <span className="font-semibold">Pro</span>.
-        </p>
+    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
+      <h1>{isRegister ? 'Daftar' : 'Login'}</h1>
+      <form onSubmit={handleSubmit}>
+        {isRegister && (
+          <div style={{ marginBottom: '10px' }}>
+            <label>Nama</label><br />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required style={{ width: '100%', padding: '8px' }} />
+          </div>
+        )}
+        <div style={{ marginBottom: '10px' }}>
+          <label>Email</label><br />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '8px' }} />
+        </div>
+        <div style={{ marginBottom: '20px' }}>
+          <label>Password</label><br />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', padding: '8px' }} />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" disabled={loading} style={{ width: '100%', padding: '10px', backgroundColor: '#0070f3', color: 'white', border: 'none', borderRadius: '5px', cursor: loading ? 'not-allowed' : 'pointer' }}>
+          {loading ? 'Memproses...' : (isRegister ? 'Daftar' : 'Login')}
+        </button>
+      </form>
 
-        <form onSubmit={handleLogin} className="space-y-4">
-          {error && (
-            <div className="p-2 text-sm text-red-600 bg-red-100 rounded-md">
-              {error}
-            </div>
-          )}
-          <div>
-            <label className="block text-sm font-medium mb-1">Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Masukkan username"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Masukkan password"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
-          >
-            Login
-          </button>
-        </form>
-      </div>
+      <div style={{ textAlign: 'center', margin: '20px 0' }}><span>atau</span></div>
+
+      {/* Tombol login dengan Google/GitHub */}
+      <button onClick={() => signIn('google', { callbackUrl: '/' })} style={{ width: '100%', padding: '10px', marginBottom: '10px' }}>Login dengan Google</button>
+      <button onClick={() => signIn('github', { callbackUrl: '/' })} style={{ width: '100%', padding: '10px' }}>Login dengan GitHub</button>
+
+      <p style={{ marginTop: '20px', textAlign: 'center' }}>
+        {isRegister ? 'Sudah punya akun?' : 'Belum punya akun?'}
+        <button onClick={() => { setIsRegister(!isRegister); setError(''); }} style={{ background: 'none', border: 'none', color: '#0070f3', cursor: 'pointer' }}>
+          {isRegister ? ' Login' : ' Daftar di sini'}
+        </button>
+      </p>
     </div>
   );
 }

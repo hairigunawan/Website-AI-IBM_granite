@@ -27,6 +27,7 @@ const TechnicalSpecs = () => {
             <li className="flex items-center border rounded-2xl p-1.5"><CheckIcon />Java</li>
             <li className="flex items-center border rounded-2xl p-1.5"><CheckIcon />Go</li>
             <li className="flex items-center border rounded-2xl p-1.5"><CheckIcon />SQL</li>
+            <li className="flex items-center border rounded-2xl p-1.5"><CheckIcon />dll</li>
           </ul>
         </div>
         <div className="border p-10 rounded-3xl border-blue-950 md:p-5 lg:p-10">

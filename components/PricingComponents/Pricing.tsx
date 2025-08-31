@@ -1,25 +1,40 @@
 'use client'; 
 
 import { useState } from 'react';
-import { Check, ChevronDown } from 'lucide-react'; // Library ikon populer
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { Check, ChevronDown } from 'lucide-react'; 
 import 'app/globals.css';
 
 const PricingPage = () => {
-  // State untuk mengelola pilihan tagihan (bulanan/tahunan)
+  const { status } = useSession();
+  const router = useRouter();
+  const isAuthenticated = status === 'authenticated';
+
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly');
-  // State untuk mengelola FAQ yang sedang terbuka
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleFaqToggle = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  // Fungsi yang diperbarui untuk menangani pembelian
+  const handlePurchase = (plan: 'pro' | 'enterprise') => {
+    if (isAuthenticated) {
+      // Jika sudah login, arahkan ke halaman pembayaran dengan query parameter
+      // untuk memberi tahu halaman tujuan paket mana yang dipilih.
+      router.push(`/payment?plan=${plan}&billing=${billing}`);
+    } else {
+      // Jika belum login, arahkan ke halaman login
+      router.push('/login');
+    }
+  };
+
   return (
     <div className=" text-gray-800">
-      {/* Kontainer Utama */}
       <div className="mx-auto px-4 py-16 lg:py-24">
 
-        {/* Header */}
+        {/* Header dan Toggle (Tidak ada perubahan) */}
         <header className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl lg:text-5xl leading-16 font-stretch-50% text-gray-900 mb-4">
             Pilih Paket yang Tepat untuk Anda
@@ -29,24 +44,28 @@ const PricingPage = () => {
           </p>
         </header>
 
-        {/* Toggle Bulanan/Tahunan */}
         <div className="flex justify-center items-center space-x-4 mb-12">
           <span className={`transition-colors ${billing === 'monthly' ? 'text-indigo-600 font-semibold' : 'text-gray-500'}`}>
             Bulanan
           </span>
           <label htmlFor="billing-toggle" className="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" 
+            <input 
+              type="checkbox" 
               id="billing-toggle" 
               className="sr-only peer"
               checked={billing === 'yearly'}
               onChange={() => setBilling(billing === 'monthly' ? 'yearly' : 'monthly')}
             />
-            <div className="w-14 h-6 bg-gray-300 rounded-full toggle-bg peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-500"></div>
+            <div className="w-14 h-7 bg-gray-300 rounded-full peer peer-focus:ring-2 peer-focus:ring-indigo-400 peer-checked:bg-indigo-600 transition-colors">
+              <span className="absolute top-1 left-1 bg-white border border-gray-300 rounded-full h-5 w-5 transition-transform peer-checked:translate-x-7"></span>
+            </div>
           </label>
           <span className={`transition-colors ${billing === 'yearly' ? 'text-indigo-600 font-semibold' : 'text-gray-500'}`}>
             Tahunan
           </span>
-          <span className="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-0.5 rounded-full ml-2">HEMAT 20%</span>
+          <span className="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+            HEMAT 20%
+          </span>
         </div>
 
         {/* Kartu Harga */}
@@ -88,9 +107,12 @@ const PricingPage = () => {
                 </div>
               )}
             </div>
-            <a href="#" className="w-full mt-6 bg-indigo-600 text-white hover:bg-indigo-700 font-medium py-3 px-6 rounded-lg text-center transition">
+            {/* Tombol yang diperbarui */}
+            <button 
+              onClick={() => handlePurchase('pro')}
+              className="w-full mt-6 bg-indigo-600 text-white hover:bg-indigo-700 font-medium py-3 px-6 rounded-lg text-center transition">
               Get started
-            </a>
+            </button>
             <ul className="mt-8 space-y-4 text-gray-600 flex-grow">
               <li className="flex items-center"><Check className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />10 Proyek Aktif</li>
               <li className="flex items-center"><Check className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />100 GB Penyimpanan</li>
@@ -116,9 +138,12 @@ const PricingPage = () => {
                 </div>
               )}
             </div>
-            <a href="#" className="w-full mt-6 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 font-medium py-3 px-6 rounded-lg text-center transition">
+            {/* Tombol yang diperbarui */}
+            <button 
+              onClick={() => handlePurchase('enterprise')}
+              className="w-full mt-6 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 font-medium py-3 px-6 rounded-lg text-center transition">
               Get started
-            </a>
+            </button>
             <ul className="mt-8 space-y-4 text-gray-600 flex-grow">
               <li className="flex items-center"><Check className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />Proyek Tanpa Batas</li>
               <li className="flex items-center"><Check className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />Penyimpanan Kustom</li>
@@ -128,13 +153,12 @@ const PricingPage = () => {
           </div>
         </div>
 
-        {/* Bagian FAQ */}
+        {/* Bagian FAQ (Tidak ada perubahan) */}
         <section className="max-w-3xl mx-auto mt-20 lg:mt-24">
           <h2 className="font-stretch-50% text-center text-gray-500 mb-8">
             Pertanyaan yang Sering Diajukan
           </h2>
           <div className="space-y-4">
-            {/* FAQ 1 */}
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <button onClick={() => handleFaqToggle(1)} className="flex justify-between items-center w-full text-left">
                 <span className="font-stretch-50% text-gray-800">Apakah ada uji coba gratis?</span>
@@ -146,7 +170,6 @@ const PricingPage = () => {
                 </div>
               )}
             </div>
-            {/* FAQ 2 */}
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <button onClick={() => handleFaqToggle(2)} className="flex justify-between items-center w-full text-left">
                 <span className="font-stretch-50% text-gray-800">Bisakah saya berganti paket nanti?</span>

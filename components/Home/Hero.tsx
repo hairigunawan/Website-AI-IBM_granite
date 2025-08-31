@@ -1,9 +1,9 @@
 'use client'
 
-import AnnouncementBanner from "./Home/AnnouncementBanner";
-import HeroContent from "./Home/HeroContent";
-import PreviewImage from "./Home/PreviewImage";
-import "../app/globals.css";
+import AnnouncementBanner from "./AnnouncementBanner";
+import HeroContent from "./HeroContent";
+import PreviewImage from "./PreviewImage";
+import "../../app/globals.css";
 
 const NewHeroSection = () => {
   return (

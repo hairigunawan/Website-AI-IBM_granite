@@ -2,11 +2,11 @@
 
 import React from 'react';
 import '../app/globals.css';
-import Hero from './how-it-worksComponents/Hero';
-import CodeDemo from './how-it-worksComponents/CodeDemo';
-import Steps from './how-it-worksComponents/Steps';
-import AdvancedFeatures from './how-it-worksComponents/AdvancedFeatures';
-import TechnicalSpecs from './how-it-worksComponents/TechnicalSpecs';
+import Hero from './Hero';
+import CodeDemo from './CodeDemo';
+import Steps from './Steps';
+import AdvancedFeatures from './AdvancedFeatures';
+import TechnicalSpecs from './TechnicalSpecs';
 
 const HowItWorks = () => {
     return (

@@ -1,7 +1,7 @@
 import BlogPage from "components/BlogComponents/blog";
-import Navbar from "components/Navbar";
-import Footer from "components/Footer";
-import BackgroundShape from "components/background-shape";
+import Navbar from "components/Navbar/Navbar";
+import Footer from "components/Footer/Footer";
+import BackgroundShape from "components/BgShape/background-shape";
 
 export default function Blog() {
   return (

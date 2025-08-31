@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion";
-import { staggerContainer } from "../utils/lib/animations";
+import { staggerContainer } from "../../utils/lib/animations";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { FaEnvelope } from "react-icons/fa";
 import { useState } from "react";

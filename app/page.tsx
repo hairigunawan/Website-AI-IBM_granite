@@ -1,8 +1,8 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import NewHeroSection from "../components/Hero";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+import NewHeroSection from "../components/Home/Hero";
 import Features from "../components/Home/Features";
-import BackgroundShape from "../components/background-shape";
+import BackgroundShape from "../components/BgShape/background-shape";
 
 export default function HomePage() {
   return (

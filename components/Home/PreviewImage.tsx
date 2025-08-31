@@ -13,7 +13,7 @@ const PreviewImage = () => {
     >
       <img 
         className="w-[80%] rounded-3xl mx-auto bg-gray-600 shadow-lg shadow-indigo-500/50" 
-        src="code IBM AI.png" 
+        src="img/code IBM AI.png" 
         alt="Preview AI code generator" 
       />
     </motion.div>

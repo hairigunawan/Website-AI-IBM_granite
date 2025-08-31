@@ -1,9 +1,9 @@
 'use client'
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import CompanyPageContent from "../../components/CompanyComponents/CompanyPageContent";
-import BackgroundShape from "components/background-shape";
+import BackgroundShape from "components/BgShape/background-shape";
 
 export default function CompanyPage() {
     return (
