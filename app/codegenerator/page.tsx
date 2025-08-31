@@ -1,13 +1,9 @@
-import CodeGenerator from '../../components/codegenerator'; 
-import Navbar_generator from '../../components/Navbar-generator'; 
+import Layout from "../../components/codegenerator/Layout";
 
 export default function CodeGeneratorPage() {
   return (
-      <div className="">
-            <Navbar_generator/>
-            <main className="mt-20">
-                  <CodeGenerator />
-            </main>
-      </div>
+      <main>
+            <Layout />
+      </main>
   );
 }

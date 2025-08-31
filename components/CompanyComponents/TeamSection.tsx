@@ -20,8 +20,8 @@ export const teamMembers = [
         title: 'CTO & Co-Founder',
         imageUrl: 'https://placehold.co/400x400/3B82F6/FFFFFF?text=KH',
         description: 'Sebagai arsitek utama di balik teknologi AI kami, ia adalah seorang ahli Machine Learning dengan rekam jejak riset dan implementasi model AI berskala besar.',
-        githubUrl: 'https://github.com/hairigunawan',
-        linkedUrl: 'https://www.linkedin.com/in/khatim-hidayatullah-a1a7a61a8/',
+        githubUrl: 'https://github.com/khatim18',
+        linkedUrl: 'www.linkedin.com/in/khatim-hidayatullah-582a99381',
     }
 ];
 

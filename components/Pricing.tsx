@@ -130,7 +130,7 @@ const PricingPage = () => {
 
         {/* Bagian FAQ */}
         <section className="max-w-3xl mx-auto mt-20 lg:mt-24">
-          <h2 className="text-3xl font-stretch-50% text-center text-gray-900 mb-8">
+          <h2 className="font-stretch-50% text-center text-gray-500 mb-8">
             Pertanyaan yang Sering Diajukan
           </h2>
           <div className="space-y-4">

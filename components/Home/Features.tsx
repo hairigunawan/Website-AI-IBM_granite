@@ -3,8 +3,8 @@
 import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { staggerContainer } from '../utils/lib/animations';
-import FeatureCard from './Home/FeatureCard'; // Impor komponen baru
+import { staggerContainer } from '../../utils/lib/animations';
+import FeatureCard from './FeatureCard'; // Impor komponen baru
 
 const features = [
   {

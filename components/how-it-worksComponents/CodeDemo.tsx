@@ -7,21 +7,34 @@ const CodeDemo = () => {
     const codeElementRef = useRef<HTMLElement>(null);
     const cursorRef = useRef<HTMLSpanElement>(null);
 
-    useEffect(() => {
-        const codeString = `
-<span class="text-sky-400">import</span> requests
+useEffect(() => {
+  const codeString = `
+<span class="text-sky-400">import</span> Replicate <span class="text-sky-400">from</span> <span class="text-orange-400">"replicate"</span>;
 
-<span class="text-sky-400">def</span> <span class="text-green-400">get_api_data</span>(api_url):
-    <span class="text-gray-500">"""
-    Fetches data from an API and handles potential errors.
-    """</span>
-    <span class="text-sky-400">try:</span>
-        response = requests.get(api_url, timeout=10)
-        response.raise_for_status()
-        <span class="text-sky-400">return</span> response.json()
-    <span class="text-sky-400">except</span> requests.exceptions.RequestException <span class="text-sky-400">as</span> err:
-        <span class="text-green-400">print</span>(<span class="text-orange-400">f"An Error Occurred: {err}"</span>)
-    <span class="text-sky-400">return</span> <span class="text-purple-400">None</span>`;
+<span class="text-sky-400">const</span> replicate = <span class="text-sky-400">new</span> Replicate({
+  auth: process.env.<span class="text-green-400">REPLICATE_API_TOKEN</span>,
+});
+
+<span class="text-sky-400">const</span> input = {
+  top_k: <span class="text-purple-400">50</span>,
+  top_p: <span class="text-purple-400">0.9</span>,
+  prompt: <span class="text-orange-400">"How is perplexity measured for LLMs and why is it useful?"</span>,
+  max_tokens: <span class="text-purple-400">512</span>,
+  min_tokens: <span class="text-purple-400">0</span>,
+  temperature: <span class="text-purple-400">0.6</span>,
+  system_prompt: <span class="text-orange-400">"You are a helpful assistant."</span>,
+  presence_penalty: <span class="text-purple-400">0</span>,
+  frequency_penalty: <span class="text-purple-400">0</span>
+};
+
+<span class="text-sky-400">for await</span> (<span class="text-sky-400">const</span> event <span class="text-sky-400">of</span> replicate.stream(
+  <span class="text-orange-400">"ibm-granite/granite-3.2-8b-instruct"</span>,
+  { input }
+)) {
+  process.stdout.write(event.toString());
+}
+`;
+
 
         let currentIndex = 0;
         let timeoutId: NodeJS.Timeout;
@@ -68,7 +81,7 @@ const CodeDemo = () => {
                 <div className="p-6 font-mono text-sm text-gray-200 max-h-[300px] overflow-y-auto overflow-x-auto">
                     <p className="mb-4">
                         <span className="text-cyan-400">&gt; </span>
-                        <span className="text-slate-300">Buatkan fungsi python untuk fetch data dari API dan handle error.</span>
+                        <span className="text-slate-300">Cara menghubungkan aplikasi Node.js ke Replicate API.</span>
                     </p>
                     <pre>
                         <code ref={codeElementRef} className="bg-cyan-500 bg-clip-text text-transparent"></code>

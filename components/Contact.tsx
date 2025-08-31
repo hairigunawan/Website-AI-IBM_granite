@@ -79,7 +79,6 @@ function Contact() {
             />
           </div>
           
-          
           {/* Company */}
           <div className="sm:col-span-2">
             <label

@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import NewHeroSection from "../components/Hero";
-import Features from "../components/Features";
+import Features from "../components/Home/Features";
 import BackgroundShape from "../components/background-shape";
 
 export default function HomePage() {
