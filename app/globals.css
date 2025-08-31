@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins';
+  color: #1f1f1f;
+}
+
+@layer components {
+  .toggle-bg {
+    @apply relative w-12 h-8 bg-gray-300 rounded-full transition-colors duration-300;
+  }
+
+  .toggle-bg::after {
+    content: '';
+  }
+
+  input:checked + .toggle-bg::after {
+    @apply translate-x-6 border-white;
+  }
+
+  input:checked + .toggle-bg {
+    @apply bg-indigo-600;
+  }
+}
+
+
+.grad {
+  background-image: -moz-linear-gradient(#f3f4f6, #0000, #fdfd);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+                
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: #f3f4f6; /* gray-100 */
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-content img {
+  height: 100px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+}
+
+.marquee-content img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(-0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
