@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react';
-import '../../app/globals.css';
 import Hero from './Hero';
 import CodeDemo from './CodeDemo';
 import Steps from './Steps';
 import AdvancedFeatures from './AdvancedFeatures';
 import TechnicalSpecs from './TechnicalSpecs';
+import '../../app/globals.css'
 
 const HowItWorks = () => {
     return (
