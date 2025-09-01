@@ -1,10 +1,16 @@
 import { Suspense } from 'react';
-import PaymentPageContent from '../../components/PaymentComponents/PaymentPage';
+import PaymentPage from 'components/PaymentComponents/PaymentPage';
 
-export default function PaymentPage() {
-    return (
-        <Suspense fallback={<div className="flex justify-center items-center h-screen">Memuat Halaman Pembayaran...</div>}>
-            <PaymentPageContent />
-        </Suspense>
-    );
-}
+const Payment = () => (
+  <Suspense
+    fallback={
+      <div className="flex justify-center items-center h-screen">
+        Memuat halaman pembayaran...
+      </div>
+    }
+  >
+    <PaymentPage/>
+  </Suspense>
+);
+
+export default Payment;
