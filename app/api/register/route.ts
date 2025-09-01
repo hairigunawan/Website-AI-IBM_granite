@@ -1,8 +1,20 @@
 import { NextResponse } from "next/server";
 
-const users: any[] = [
-    { id: '1', name: 'Admin User', email: 'admin@example.com', password: 'password123' }
-]; 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  password?: string; 
+}
+
+const users: User[] = [
+  { 
+    id: '1', 
+    name: 'Admin User', 
+    email: 'admin@example.com', 
+    password: 'password123' 
+  }
+];
 
 export async function POST(request: Request) {
   try {
@@ -19,11 +31,6 @@ export async function POST(request: Request) {
     if (existingUser) {
       return NextResponse.json({ message: "Email sudah terdaftar." }, { status: 409 }); // 409 Conflict
     }
-
-    // 3. Hash password sebelum disimpan! JANGAN PERNAH MENYIMPAN PASSWORD SEBAGAI PLAIN TEXT.
-    // Gunakan library seperti `bcrypt`. Contoh:
-    // import bcrypt from 'bcryptjs';
-    // const hashedPassword = await bcrypt.hash(password, 10);
 
     // 4. Simpan user baru ke database
     console.log("Mendaftarkan user baru:", { email, name });
