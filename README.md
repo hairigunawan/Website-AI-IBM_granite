@@ -2,14 +2,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
-
+## WARNINGS
 MOHON MAAF AI TIDAK DAPAT DIGUNAKAN KARNA SAYA TIDAK MEMILIKI KATRU VISA ATAU YANG BISA DIGUNAKAN UNTUK MENDAPATKAN TOKEN AI GRANITE
 
-Website AI Code Generator
-Selamat datang di repositori Website AI Code Generator. Proyek ini adalah platform web modern yang memungkinkan pengguna untuk menghasilkan kode menggunakan kekuatan model AI dari IBM Granite. Aplikasi ini dibangun dengan Next.js dan dilengkapi dengan sistem otentikasi lengkap, tingkatan harga, dan halaman pembayaran.
+## Website AI Code
+
+Selamat datang di repositori Website AI Code. Proyek ini adalah platform web modern yang memungkinkan pengguna untuk menghasilkan kode menggunakan kekuatan model AI dari IBM Granite. Aplikasi ini dibangun dengan Next.js dan dilengkapi dengan sistem otentikasi lengkap, tingkatan harga, dan halaman pembayaran.
 
 
-🚀 Teknologi yang Digunakan
+## 🚀 Teknologi yang Digunakan
 Framework: Next.js (App Router)
 
 Bahasa: TypeScript
